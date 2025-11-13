@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>ChatGPTで原稿のトーン統一｜AI活用TIPS</title>
+<style>
+body {font-family:'Noto Sans JP',sans-serif;background:#fff6f8;color:#444;margin:0;}
+header {text-align:center;background:#fff;border-bottom:2px solid #f8c4d8;padding:16px 0;}
+header h1 {color:#f06292;margin:0;font-size:24px;}
+main {max-width:800px;margin:40px auto;background:#fff;border-radius:16px;box-shadow:0 2px 6px rgba(0,0,0,0.1);padding:32px;}
+h2 {color:#f06292;font-family:'Zen Maru Gothic',sans-serif;border-left:5px solid #f8bbd0;padding-left:10px;}
+video {width:100%;border-radius:12px;margin:12px 0;}
+details {background:#fff6f8;border:1px solid #f8c4d8;border-radius:12px;padding:12px 16px;margin-top:16px;}
+summary {cursor:pointer;font-weight:600;color:#f06292;}
+.step {margin-top:12px;}
+.step img {width:100%;border-radius:12px;box-shadow:0 2px 6px rgba(0,0,0,0.08);}
+.step p {margin:6px 0 18px;font-size:14px;color:#555;}
+.footer-buttons {display:flex;justify-content:space-between;margin-top:24px;}
+.footer-buttons button {background:#f06292;color:#fff;border:none;padding:10px 18px;border-radius:24px;cursor:pointer;transition:0.2s;}
+.footer-buttons button:hover {background:#f48fb1;}
+.meta {color:#777;font-size:13px;margin-bottom:20px;}
+
+.post-btn {
+  background:#f06292;
+  color:#fff;
+  padding:8px 18px;
+  border-radius:24px;
+  text-decoration:none;
+  font-weight:600;
+  position:fixed;
+  top:16px;
+  right:40px;
+  z-index:1000;
+}
+
+</style>
+</head>
+<body>
+<header><h1>AI活用TIPS</h1>  <a href="post_form.html" class="post-btn">＋ 投稿はこちらから</a>
+</header>
+<main>
+<p><a href="index.html" style="color:#f06292;text-decoration:none;">HOME</a> ＞ ChatGPTで原稿のトーン統一</p>
+<h2>ChatGPTで原稿のトーン統一</h2>
+<p class="meta">投稿者：編集部AIチーム ｜ 使用AI：ChatGPT</p>
+<section>
+<h2>解説動画</h2>
+<video controls src="sample.mp4"></video>
+</section>
+<section>
+<h2>できること概要</h2>
+<p>ChatGPTを活用することで、複数人で執筆した原稿の敬体／常体のゆらぎを自動で修正し、統一感のある文章に仕上げることができます。</p>
+</section>
+<details>
+<summary>詳しいやり方を見る</summary>
+<div class="step"><img src="images/step1.jpg"><p>① ChatGPTを開いて原稿を貼り付けます。</p></div>
+<div class="step"><img src="images/step2.jpg"><p>② 「敬体に統一して」と指示を出します。</p></div>
+<div class="step"><img src="images/step3.jpg"><p>③ 結果を確認し、必要に応じて微調整します。</p></div>
+<div class="step"><img src="images/step4.jpg"><p>④ 修正後の原稿をダウンロードします。</p></div>
+<div class="step"><img src="images/step5.jpg"><p>⑤ これで完了！文体が統一された原稿が完成です。</p></div>
+</details>
+<div class="footer-buttons">
+<button>役立った！</button>
+<a href="index.html"><button>TOPに戻る</button></a>
+</div>
+
+<section class="related">
+  <h2>関連した活用法</h2>
+  <div class="carousel-container">
+    <button class="carousel-btn left" onclick="scrollLeft()">&#10094;</button>
+    <div class="carousel">
+      <a class="related-card" href="tip_detail.html"><img src="https://placehold.co/160x160/fce4ec/333?text=Excel"><h4>Excel表を自動整形</h4><p>ChatGPTで体裁統一</p></a>
+      <a class="related-card" href="tip_detail.html"><img src="https://placehold.co/160x160/f8bbd0/333?text=PDF"><h4>PDFを要約して表に変換</h4><p>OCR＋AI要約で効率化</p></a>
+      <a class="related-card" href="tip_detail.html"><img src="https://placehold.co/160x160/f48fb1/333?text=Mail"><h4>メール文自動生成</h4><p>定型文の自動化</p></a>
+      <a class="related-card" href="tip_detail.html"><img src="https://placehold.co/160x160/fce4ec/333?text=Slide"><h4>スライド自動デザイン</h4><p>PowerPoint連携</p></a>
+      <a class="related-card" href="tip_detail.html"><img src="https://placehold.co/160x160/f8bbd0/333?text=Idea"><h4>アイデア出し支援AI</h4><p>新企画ブレストに最適</p></a>
+    </div>
+    <button class="carousel-btn right" onclick="scrollRight()">&#10095;</button>
+  </div>
+</section>
+
+<script>
+function scrollLeft() {
+  document.querySelector('.carousel').scrollBy({ left: -200, behavior: 'smooth' });
+}
+function scrollRight() {
+  document.querySelector('.carousel').scrollBy({ left: 200, behavior: 'smooth' });
+}
+</script>
+
+<style>
+.related { margin-top: 40px; }
+.related h2 {
+  color:#f06292;
+  border-left:5px solid #f8bbd0;
+  padding-left:10px;
+  font-size:20px;
+  margin-bottom:10px;
+}
+.carousel-container { position: relative; }
+.carousel {
+  display:flex;
+  overflow-x:auto;
+  gap:16px;
+  scroll-behavior:smooth;
+  padding-bottom:10px;
+  scrollbar-width:none;
+}
+.carousel::-webkit-scrollbar { display:none; }
+.related-card {
+  flex:0 0 160px;
+  background:#fff;
+  border-radius:12px;
+  box-shadow:0 2px 6px rgba(0,0,0,0.1);
+  text-align:center;
+  text-decoration:none;
+  color:#555;
+  transition:transform 0.2s;
+}
+.related-card:hover { transform:translateY(-3px); }
+.related-card img { width:100%; border-radius:12px 12px 0 0; }
+.related-card h4 { color:#f06292; font-size:14px; margin:8px 0 2px; }
+.related-card p { font-size:12px; margin:0 0 10px; }
+.carousel-btn {
+  position:absolute;
+  top:50%;
+  transform:translateY(-50%);
+  background:#f06292;
+  color:#fff;
+  border:none;
+  border-radius:50%;
+  width:32px;
+  height:32px;
+  cursor:pointer;
+  font-size:20px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  box-shadow:0 2px 6px rgba(0,0,0,0.2);
+}
+.carousel-btn.left { left:-40px; }
+.carousel-btn.right { right:-40px; }
+.carousel-btn:hover { background:#f48fb1; }
+
+.post-btn {
+  background:#f06292;
+  color:#fff;
+  padding:8px 18px;
+  border-radius:24px;
+  text-decoration:none;
+  font-weight:600;
+  position:fixed;
+  top:16px;
+  right:40px;
+  z-index:1000;
+}
+
+</style>
+
+</main>
+<script>
+document.addEventListener('DOMContentLoaded', async function() {
+  const params = new URLSearchParams(window.location.search);
+  const id = params.get('id');
+  if (!id) return;
+  try {
+    const res = await fetch('/api/detail?id=' + encodeURIComponent(id));
+    const data = await res.json();
+    if (!data.ok) return;
+    const post = data.post;
+    const mainTitle = document.querySelector('h2');
+    if (mainTitle) mainTitle.textContent = post.title;
+    const overviewSection = document.querySelector('section:nth-of-type(2) p');
+    if (overviewSection) overviewSection.textContent = post.summary || '';
+  } catch (e) {}
+});
+</script>
+</body>
+</html>
