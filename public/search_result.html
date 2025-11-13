@@ -59,7 +59,7 @@ document.addEventListener('DOMContentLoaded', async function() {
   if (!container) return;
   container.innerHTML = '<p>検索中です…</p>';
   try {
-    const res = await fetch('/api/search?q=' + encodeURIComponent(q));
+    const res = await fetch(`https://lucky-frog-60e9.na-tashiro.workers.dev/api/search?q=${keyword}`)
     const data = await res.json();
     if (!data.ok || !data.results || data.results.length === 0) {
       container.innerHTML = '<p>該当するAI活用TIPSが見つかりませんでした．</p>';
