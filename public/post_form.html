@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>投稿フォーム｜AI活用TIPS</title>
+<style>
+body {font-family:'Noto Sans JP', sans-serif; background:#fff6f8; color:#444; margin:0;}
+header {display:flex; justify-content:space-between; align-items:center; background:#fff; border-bottom:2px solid #f8c4d8; padding:16px 40px;}
+header h1 {color:#f06292; margin:0; font-size:26px;}
+
+.post-btn {
+  background:#f06292;
+  color:#fff;
+  padding:8px 18px;
+  border-radius:24px;
+  text-decoration:none;
+  font-weight:600;
+  position:fixed;
+  top:16px;
+  right:40px;
+  z-index:1000;
+}
+background:#f06292; color:#fff; padding:8px 18px; border-radius:24px; text-decoration:none; font-weight:600;}
+main {max-width:700px; margin:40px auto; background:#fff; border-radius:16px; box-shadow:0 2px 6px rgba(0,0,0,0.1); padding:32px;}
+h2 {color:#f06292; border-left:5px solid #f8bbd0; padding-left:10px;}
+label {display:block; margin-top:20px; font-weight:600; color:#f06292;}
+input[type="text"], textarea, input[type="file"] {
+  width:100%; padding:10px; border:1.5px solid #f8bbd0; border-radius:8px; font-size:14px;
+}
+textarea {min-height:80px; resize:vertical;}
+#usage-list {margin-top:10px;}
+.add-step {background:#f8bbd0; color:#fff; border:none; padding:6px 14px; border-radius:20px; cursor:pointer; margin-top:8px;}
+.add-step:hover {opacity:0.85;}
+button[type="submit"] {background:#f06292; color:#fff; border:none; padding:12px 24px; border-radius:24px; font-size:16px; cursor:pointer; margin-top:30px;}
+button[type="submit"]:hover {background:#f48fb1;}
+</style>
+<script>
+function addUsageStep() {
+  const list = document.getElementById("usage-list");
+  const step = document.createElement("div");
+  step.innerHTML = `
+    <textarea placeholder="使い方ステップを入力..."></textarea>
+    <input type="file" accept="image/*">
+  `;
+  list.appendChild(step);
+}
+</script>
+</head>
+<body>
+<header>
+  <h1>AI活用TIPS</h1>
+  <a href="post_form.html" class="post-btn">＋ 投稿はこちらから</a>
+</header>
+
+<main>
+<h2>新しいAI活用法を投稿する</h2>
+<form action="post_success.html" method="get">
+  <label>タイトル</label>
+  <input type="text" name="title" required>
+
+  <label>サムネ画像</label>
+  <input type="file" name="thumbnail" accept="image/*">
+
+  <label>一言概要</label>
+  <textarea name="summary"></textarea>
+
+  <label>詳しい内容</label>
+  <textarea name="detail"></textarea>
+
+  <label>使い方（①〜③など追加可）</label>
+  <div id="usage-list">
+    <textarea placeholder="使い方ステップを入力..."></textarea>
+    <input type="file" accept="image/*">
+  </div>
+  <button type="button" class="add-step" onclick="addUsageStep()">＋ ステップを追加</button>
+
+  <label>タグ（カンマ区切り）</label>
+  <input type="text" name="tags" placeholder="例：ChatGPT, 文章校正, Python">
+
+  <button type="submit">投稿する</button>
+</form>
+</main>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const form = document.querySelector('form');
+  if (!form) return;
+  form.addEventListener('submit', async function(e) {
+    e.preventDefault();
+    const fd = new FormData(form);
+    const data = Object.fromEntries(fd.entries());
+    try {
+      const res = await fetch('/api/post',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)});
+      const j = await res.json();
+      if (j.ok) window.location.href='post_success.html';
+      else alert('投稿失敗');
+    } catch(e){alert('エラー');}
+  });
+});
+</script>
+</body>
+</html>
