@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>検索結果｜AI活用TIPS</title>
+<style>
+body {font-family:'Noto Sans JP', sans-serif; background:#fff6f8; color:#444; margin:0;}
+header {text-align:center; background:#fff; border-bottom:2px solid #f8c4d8; padding:16px 0; position:sticky; top:0;}
+header h1 {color:#f06292; margin:0; font-size:26px;}
+main {max-width:900px; margin:40px auto; background:#fff; border-radius:16px; box-shadow:0 2px 6px rgba(0,0,0,0.1); padding:32px;}
+h2 {color:#f06292; border-left:5px solid #f8bbd0; padding-left:10px;}
+.result-container {display:flex; justify-content:space-between; gap:20px; flex-wrap:wrap; margin-top:20px;}
+.card {background:#fff; border-radius:16px; box-shadow:0 2px 6px rgba(0,0,0,0.1); width:calc(33% - 20px); text-align:center; transition:transform 0.2s;}
+.card:hover {transform:translateY(-4px);}
+.card img {width:100%; border-radius:16px 16px 0 0; aspect-ratio:1/1; object-fit:cover;}
+.card h3 {color:#f06292; margin:10px 0 5px;}
+.card p {font-size:14px; color:#555; padding:0 10px 10px;}
+footer {text-align:center; padding:20px; color:#888; font-size:12px; margin-top:40px;}
+button {background:#f06292; color:#fff; border:none; padding:10px 20px; border-radius:24px; cursor:pointer;}
+button:hover {background:#f48fb1;}
+
+.post-btn {
+  background:#f06292;
+  color:#fff;
+  padding:8px 18px;
+  border-radius:24px;
+  text-decoration:none;
+  font-weight:600;
+  position:fixed;
+  top:16px;
+  right:40px;
+  z-index:1000;
+}
+
+</style>
+</head>
+<body>
+<header><h1>AI活用TIPS 検索結果</h1>  <a href="post_form.html" class="post-btn">＋ 投稿はこちらから</a>
+</header>
+<main>
+<h2>🔍 「ChatGPT」での検索結果（デモ）</h2>
+<div class="result-container">
+  <a class="card" href="tip_detail.html"><img src="https://placehold.co/600x600/fce4ec/333?text=ChatGPT"><h3>ChatGPTで原稿のトーン統一</h3><p>文体ゆらぎを自動修正</p></a>
+  <a class="card" href="tip_detail.html"><img src="https://placehold.co/600x600/f8bbd0/333?text=PDF"><h3>PDFを自動でExcel化</h3><p>OCR×Pythonで効率化</p></a>
+  <a class="card" href="tip_detail.html"><img src="https://placehold.co/600x600/f48fb1/333?text=Summary"><h3>AIで議事録を要約</h3><p>Slackメモを自動整理</p></a>
+</div>
+<div style="text-align:center; margin-top:30px;">
+  <a href="index.html"><button>TOPに戻る</button></a>
+</div>
+<footer>© 2025 NekoNeko Publishing - AI活用推進チーム</footer>
+</main>
+<script>
+document.addEventListener('DOMContentLoaded', async function() {
+  const params = new URLSearchParams(window.location.search);
+  const q = params.get('q') || '';
+  const heading = document.querySelector('h2');
+  if (heading && q) heading.textContent = `🔍 「${q}」での検索結果`;
+  const container = document.querySelector('.result-container');
+  if (!container) return;
+  container.innerHTML = '<p>検索中です…</p>';
+  try {
+    const res = await fetch('/api/search?q=' + encodeURIComponent(q));
+    const data = await res.json();
+    if (!data.ok || !data.results || data.results.length === 0) {
+      container.innerHTML = '<p>該当するAI活用TIPSが見つかりませんでした．</p>';
+      return;
+    }
+    container.innerHTML = '';
+    data.results.forEach(post => {
+      const a = document.createElement('a');
+      a.className = 'card';
+      a.href = 'tip_detail.html?id=' + post.id;
+      const img = document.createElement('img');
+      img.src = post.image_url || 'https://placehold.co/600x600/fce4ec/333?text=AI';
+      a.appendChild(img);
+      const h3 = document.createElement('h3');
+      h3.textContent = post.title;
+      a.appendChild(h3);
+      const p = document.createElement('p');
+      p.textContent = post.summary || '';
+      a.appendChild(p);
+      container.appendChild(a);
+    });
+  } catch (e) {
+    container.innerHTML = '<p>検索中にエラーが発生しました．</p>';
+  }
+});
+</script>
+
+</body>
+</html>
